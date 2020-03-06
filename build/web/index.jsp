@@ -3,6 +3,7 @@
 <%@page import="java.awt.Color"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Dba"%>
+<%@page import="controllers.databasePath" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,10 +16,16 @@
     <body>
         <h1>Hello World!</h1>
         <%
+            databasePath path = new databasePath();
+            // out.print(path.getDatabasePath());
             try {
-                Dba db = new Dba(application.getRealPath("db/daw.mdb"));
+                // Windows location
+                Dba db = new Dba(application.getRealPath("") + "db\\daw.mdb");
+                // Mac location
+                // Dba db = new Dba(application.getRealPath("db/daw.mdb"));
+                
                 db.conectar();
-                db.query.execute("select usuario, password from usuarios");
+                db.query.execute("select userId, username from users");
                 
                 ResultSet rs=db.query.getResultSet();
                 
