@@ -5,17 +5,20 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Dba {
-    private String base_datos;
+    private String base_datos = "/Users/joseavilez/Documents/college/prograIV/final-project/web/db/daw.mdb";
     private Connection dbcon;
     public Statement query;
     
     public Dba(String base_datos){
         this.base_datos=base_datos;
     }
+    public Dba() {
+        
+    }
 
     public void setBase_datos(String base_datos) {
         this.base_datos = base_datos;
-    }        
+    }      
     
    public void conectar(){
         try {

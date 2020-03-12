@@ -1,3 +1,8 @@
+<%@page import="model.User"%>
+<%@page import="DAO.LoginDAO"%>
+<%@page import="model.Membership"%>
+<%@page import="model.Role"%>
+<%@page import="DAO.UsersDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.awt.Color"%>
@@ -20,23 +25,32 @@
             // out.print(path.getDatabasePath());
             try {
                 // Windows location
-                Dba db = new Dba(application.getRealPath("") + "db\\daw.mdb");
+                // Dba db = new Dba(application.getRealPath("") + "db\\daw.mdb");
                 // Mac location
-                // Dba db = new Dba(application.getRealPath("db/daw.mdb"));
+                Dba db = new Dba();
                 
                 db.conectar();
-                db.query.execute("select userId, username from users");
+                db.query.execute("select userId, username, password from users");
                 
                 ResultSet rs=db.query.getResultSet();
                 
                 while(rs.next()){
-                    out.print(rs.getString(1) + " " + rs.getString(2) + "<br>");
+                    out.print(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + "<br>");
                 }
+                
+                db.desconectar();
             } catch (Exception error) {
                 error.printStackTrace();
             }
             
-
+            LoginDAO logindao = new LoginDAO();
+            User loggedUser = logindao.loginUserWithEmailAndPassword("admin@autoventas.com", "admin");
+            
+            if (loggedUser != null) {
+                out.print(loggedUser.getName() + " " + loggedUser.getRole().roleName);
+            } else {
+                out.print("null user");
+            }
         %>
     </body>
 </html>

@@ -16,24 +16,10 @@ public class User {
     private String country;
     private String mapLocation;
     private Date birthdate;
-    private String role;
-    private String membership;
+    private Role role;
+    private Membership membership;
     
-    void User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, String role, String membership) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.country = country;
-        this.birthdate = birthdate;
-        this.mapLocation = mapLocation;
-        this.role = role;
-        this.membership = membership;
-        this.id = 0;
-    }
-    
-    void User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, String role, String membership, int id) {
+    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, Role role, Membership membership, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -45,6 +31,20 @@ public class User {
         this.role = role;
         this.membership = membership;
         this.id = id;
+    }
+    
+    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, Role role, Membership membership) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.country = country;
+        this.birthdate = birthdate;
+        this.mapLocation = mapLocation;
+        this.role = role;
+        this.membership = membership;
+        this.id = 0;
     }
     
     public void setFirstName(String firstName) {
@@ -103,17 +103,17 @@ public class User {
         return this.birthdate;
     }
     
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
-    public String getRole() {
+    public Role getRole() {
         return this.role;
     }
     
-    public void setMembership(String membership) {
+    public void setMembership(Membership membership) {
         this.membership = membership;
     }
-    public String getMembership() {
+    public Membership getMembership() {
         return this.membership;
     }
     
