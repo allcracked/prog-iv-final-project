@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Dba {
-    private String base_datos = "/Users/joseavilez/Documents/college/prograIV/final-project/web/db/daw.mdb";
+    // private String base_datos = "/Users/joseavilez/Documents/college/prograIV/final-project/web/db/daw.mdb"; // Mac
+    private String base_datos = "C:\\Users\\allcr\\Documents\\NetBeansProjects\\prog-iv-final-project\\web\\db\\daw.mdb"; // Windows
     private Connection dbcon;
     public Statement query;
     

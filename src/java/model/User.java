@@ -14,12 +14,13 @@ public class User {
     private String email;
     private String password;
     private String country;
-    private String mapLocation;
+    private String latitude;
+    private String longitude;
     private Date birthdate;
     private Role role;
     private Membership membership;
     
-    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, Role role, Membership membership, int id) {
+    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String latitude, String longitude, Role role, Membership membership, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -27,13 +28,14 @@ public class User {
         this.password = password;
         this.country = country;
         this.birthdate = birthdate;
-        this.mapLocation = mapLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.role = role;
         this.membership = membership;
         this.id = id;
     }
     
-    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String mapLocation, Role role, Membership membership) {
+    public User(String firstName, String lastName, String username, String email, String password, String country, Date birthdate, String latitude, String longitude, Role role, Membership membership) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -41,7 +43,8 @@ public class User {
         this.password = password;
         this.country = country;
         this.birthdate = birthdate;
-        this.mapLocation = mapLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.role = role;
         this.membership = membership;
         this.id = 0;
@@ -89,11 +92,18 @@ public class User {
         return this.country;
     }
     
-    public void setMapLocation(String mapLocation) {
-        this.mapLocation = mapLocation;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
-    public String getMapLocation() {
-        return this.mapLocation;
+    public String getLatitude() {
+        return this.latitude;
+    }
+    
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+    public String getLongitude() {
+        return this.longitude;
     }
     
     public void setBirthdate(Date birthdate) {

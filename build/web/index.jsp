@@ -43,14 +43,8 @@
                 error.printStackTrace();
             }
             
-            LoginDAO logindao = new LoginDAO();
-            User loggedUser = logindao.loginUserWithEmailAndPassword("admin@autoventas.com", "admin");
-            
-            if (loggedUser != null) {
-                out.print(loggedUser.getName() + " " + loggedUser.getRole().roleName);
-            } else {
-                out.print("null user");
-            }
+            User loggedUser = (User)request.getAttribute("loggedUser");
+            out.print(loggedUser.getName() + " " + loggedUser.getRole().roleName);
         %>
     </body>
 </html>

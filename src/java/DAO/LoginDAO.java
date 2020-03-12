@@ -30,14 +30,15 @@ public class LoginDAO {
                 String username = result.getString(6);
                 Date birthdate = result.getDate(7);
                 String country = result.getString(8);
-                String mapLocation = result.getString(9);
+                String latitude = result.getString(9);
+                String longitude = result.getString(10);
                 
                 UsersDAO userdao = new UsersDAO();
                 
                 Role userRole = userdao.getUserRoleByUserId(userId);
                 Membership userMembership = userdao.getUserMembershiptByUserId(userId);
                 
-                User loggedUser = new User(firstName, lastName, username, userEmail, userPass, country, birthdate, mapLocation, userRole, userMembership, userId);
+                User loggedUser = new User(firstName, lastName, username, userEmail, userPass, country, birthdate, latitude, longitude, userRole, userMembership, userId);
                 
                 database.desconectar();
                 return loggedUser;

@@ -16,11 +16,12 @@ public class Company {
     private String phone;
     private String mainEmail;
     private String address;
-    private String mapLocation;
+    private String latitude;
+    private String longitude;
     
     public User[] users;
     
-    void Company(String name, String mission, String vision, String objectives, String policies, String orgChartLink, String phone, String mainEmail, String address, String mapLocation) {
+    public Company(String name, String mission, String vision, String objectives, String policies, String orgChartLink, String phone, String mainEmail, String address, String latitude, String longitude) {
         this.name = name;
         this.mission = mission;
         this.vision = vision;
@@ -30,10 +31,11 @@ public class Company {
         this.phone = phone;
         this.mainEmail = mainEmail;
         this.address = address;
-        this.mapLocation = mapLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.id = 0;
     }
-    void Company(String name, String mission, String vision, String objectives, String policies, String orgChartLink, String phone, String mainEmail, String address, String mapLocation, int id) {
+    public Company(String name, String mission, String vision, String objectives, String policies, String orgChartLink, String phone, String mainEmail, String address, String latitude, String longitude, int id) {
         this.name = name;
         this.mission = mission;
         this.vision = vision;
@@ -43,7 +45,8 @@ public class Company {
         this.phone = phone;
         this.mainEmail = mainEmail;
         this.address = address;
-        this.mapLocation = mapLocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.id = id;
     }
     
@@ -110,10 +113,17 @@ public class Company {
         return this.address;
     }
     
-    public void setMapLocation(String mapLocation) {
-        this.mapLocation = mapLocation;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
-    public String getMapLocation() {
-        return this.mapLocation;
+    public String getLatitude() {
+        return this.latitude;
+    }
+    
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+    public String getLongitude() {
+        return this.longitude;
     }
 }
