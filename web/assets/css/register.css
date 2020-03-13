@@ -1,0 +1,7 @@
+#new-company-form {
+    display: none;
+}
+
+.new-company-form-active {
+    display: block !important;
+}

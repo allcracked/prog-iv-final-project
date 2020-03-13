@@ -16,7 +16,7 @@ public class Membership {
     public String membershipDescription;
     public int membershipPrice;
     
-    public Membership(int membershipId, int roleId, String membershipName, String membershipDescription, int membershipPrice) {
+    public Membership(int membershipId, int roleId, String membershipDescription, String membershipName, int membershipPrice) {
         this.membershipId = membershipId;
         this.roleId = roleId;
         this.membershipName = membershipName;
