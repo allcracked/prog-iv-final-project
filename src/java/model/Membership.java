@@ -14,9 +14,9 @@ public class Membership {
     public int roleId;
     public String membershipName;
     public String membershipDescription;
-    public float membershipPrice;
+    public int membershipPrice;
     
-    public Membership(int membershipId, int roleId, String membershipName, String membershipDescription, float membershipPrice) {
+    public Membership(int membershipId, int roleId, String membershipName, String membershipDescription, int membershipPrice) {
         this.membershipId = membershipId;
         this.roleId = roleId;
         this.membershipName = membershipName;

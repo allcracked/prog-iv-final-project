@@ -33,10 +33,11 @@ public class LoginDAO {
                 String latitude = result.getString(9);
                 String longitude = result.getString(10);
                 
-                UsersDAO userdao = new UsersDAO();
+                RoleDAO roledao = new RoleDAO();
+                MembershipDAO membershipdao = new MembershipDAO();
                 
-                Role userRole = userdao.getUserRoleByUserId(userId);
-                Membership userMembership = userdao.getUserMembershiptByUserId(userId);
+                Role userRole = roledao.getUserRoleByUserId(userId);
+                Membership userMembership = membershipdao.getUserMembershiptByUserId(userId);
                 
                 User loggedUser = new User(firstName, lastName, username, userEmail, userPass, country, birthdate, latitude, longitude, userRole, userMembership, userId);
                 
