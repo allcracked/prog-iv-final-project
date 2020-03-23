@@ -61,4 +61,29 @@ public class MembershipDAO {
             return null;
         }
     }
+    
+    public Membership getMembershipById(int membershipId) {
+        try {
+            Dba database = new Dba();
+            
+            database.conectar();
+            
+            database.query.execute("select * from memberships where membershipId=" + membershipId);
+            
+            ResultSet result = database.query.getResultSet();
+            
+            if (result.next()) {
+                Membership membership = new Membership(result.getInt(1), result.getInt(2), result.getString(3), result.getString(4), result.getInt(5));
+                
+                database.desconectar();
+                return membership;
+            }
+            
+            database.desconectar();
+            return null;
+            
+        } catch (SQLException error) {
+            return null;
+        }
+    }
 }

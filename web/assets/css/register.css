@@ -5,3 +5,11 @@
 .new-company-form-active {
     display: block !important;
 }
+
+.membership-card-hidden {
+    display: none;
+}
+
+.membership-card-active {
+    display: block !important;
+}

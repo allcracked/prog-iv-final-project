@@ -26,6 +26,7 @@
             ];
             
             const availableMemberships = [];
+            const memberships = [];
             
             availableRoles.forEach(function (role) {
                 availableMemberships[role.id] = [];
@@ -34,6 +35,7 @@
             <%
                 for (Membership membership: memberships) {
                     out.print("availableMemberships["+ membership.roleId +"].push({id: "+ membership.membershipId +", roleId: "+ membership.roleId +", name: '"+ membership.membershipName +"', description: '"+ membership.membershipDescription +"', price: "+ membership.membershipPrice +"});");
+                    out.print("memberships["+ membership.membershipId +"] = {id: "+ membership.membershipId +", roleId: "+ membership.roleId +", name: '"+ membership.membershipName +"', description: '"+ membership.membershipDescription +"', price: "+ membership.membershipPrice +"};");
                 }
             %>
             
@@ -46,12 +48,27 @@
                 <h2>Formulario de Registro</h2>
                 <p class="lead">Complete el siguiente formulario para registrar un nuevo usuario, puede seleccionar una empresa o crear una nueva.</p>
             </div>
+            
+            <%
+                if (request.getAttribute("registrationError") != null) {
+            %>
+                
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%=request.getAttribute("registrationError")%>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            
+            <%
+                }
+            %>
 
             <div class="row">
               <div class="col-md-8 order-md-1 offset-md-2">
 
-                <form class="needs-validation">
-                    <h4>Empresa</h4>
+                  <form class="needs-validation" method="post" enctype="application/x-www-form-urlencoded" action="register">
+<!--                    <h4>Empresa</h4>
                     <div class="mb-3">
                         <label for="companyId">Seleccione una empresa</label>
                         <select class="custom-select d-block w-100" id="companyId" name="companyId" required>
@@ -163,7 +180,7 @@
                         </div>
                     </div>
                         
-                    <hr class="mb-4">
+                    <hr class="mb-4">-->
                     
                     <h4>Usuario</h4>
                     <div class="row">
@@ -232,7 +249,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="latitude">Latitud</label>
-                            <input type="text" class="form-control" id="latitude" name=latitude"" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="latitude" name="latitude" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Latitud es necesaria
                             </div>
@@ -283,87 +300,26 @@
                         </div>
                     </div>
                         
-                    <div class="card text-center" id="membership-description" style="width: 18rem;">
+                    <div class="card text-center membership-card-hidden" id="membership-description">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title" id="membership-title"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" id="membership-subtitle"></h6>
+                            <p class="card-text" id="memebership-title"></p>
                         </div>
                     </div>
-
-                  
+                        
                   <hr class="mb-4">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                  </div>
-                  <hr class="mb-4">
-
-                  <h4 class="mb-3">Payment</h4>
-
-                  <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                      <label class="custom-control-label" for="credit">Credit card</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                      <label class="custom-control-label" for="debit">Debit card</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                      <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                      <label class="custom-control-label" for="paypal">PayPal</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="cc-name">Name on card</label>
-                      <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                      <small class="text-muted">Full name as displayed on card</small>
-                      <div class="invalid-feedback">
-                        Name on card is required
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="cc-number">Credit card number</label>
-                      <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                      <div class="invalid-feedback">
-                        Credit card number is required
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 mb-3">
-                      <label for="cc-expiration">Expiration</label>
-                      <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                      <div class="invalid-feedback">
-                        Expiration date required
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                      <label for="cc-cvv">CVV</label>
-                      <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                      <div class="invalid-feedback">
-                        Security code required
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="mb-4">
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Registrar Usuario</button>
                 </form>
               </div>
             </div>
 
             <footer class="my-5 pt-5 text-muted text-center text-small">
-              <p class="mb-1">&copy; 2017-2019 Company Name</p>
+              <p class="mb-1">&copy; 2020 AutoVentas</p>
               <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Support</a></li>
+                <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                <li class="list-inline-item"><a href="#">Terminos</a></li>
+                <li class="list-inline-item"><a href="#">Soporte</a></li>
               </ul>
             </footer>
         </div>

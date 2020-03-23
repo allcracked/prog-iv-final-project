@@ -61,4 +61,29 @@ public class RoleDAO {
             return null;
         }
     }
+    
+    public Role getRoleById(int roleId) {
+        try {
+            Dba database = new Dba();
+            
+            database.conectar();
+            
+            database.query.execute("select * from roles where roleId=" + roleId);
+            
+            ResultSet result = database.query.getResultSet();
+            
+            if (result.next()) {
+                Role role = new Role(result.getInt(1), result.getString(2), result.getString(3));
+                
+                database.desconectar();
+                return role;
+            }
+            
+            database.desconectar();
+            return null;
+            
+        } catch (SQLException error) {
+            return null;
+        }
+    }
 }

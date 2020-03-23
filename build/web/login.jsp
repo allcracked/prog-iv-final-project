@@ -13,10 +13,19 @@
         <img class="mb-4" src="assets/img/logo.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Por favor inicie sesi&oacute;n</h1>
         <%
-           if(request.getParameter("email") != null) {
-               out.print("<p>Las credenciales ingresadas no son correctas.</p>");
-           } 
-         %>
+            if (request.getParameter("email") != null) {
+        %>
+                
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Las credenciales ingresadas no son correctas.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            
+        <%
+            }
+        %>
         <label for="inputEmail" class="sr-only">Correo electr&oacute;nico</label>
         <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Correo electr&oacute;nico" value="" required autofocus>
         <label for="inputPassword" class="sr-only">Contrase&ntilde;a</label>
